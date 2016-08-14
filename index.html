@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Matrix Hangman</title>
+
+		<!-- Link in CSS files -->
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	</head>
+	<body>
+
+		<!-- Title -->
+		<div id = "header">
+			<h1 class = "head">The Matrix</h1>
+			<h2 class = "head">Hangman Reloaded</h2>
+		</div>
+
+
+		<!-- Left side -->
+		<div id = "left_side">
+			<h1 class = "hangman">The machines are coming. Who is calling? Guess their name. Help them exit!</h1>
+
+			<div id = "image">
+				<img id = "edit_image" src="assets/images/phone.png">
+			</div>
+
+		</div>
+
+
+		<!-- Right side -->
+		<div id = "right_side">
+			<h1 class = "hangman">Press any key to get started!</h1>
+
+			<h1 id = "score" class = "hangman">Wins: 0</h1>
+
+
+			<h1 class = "hangman">Current Word</h1>
+
+			<h1 id = "displayed_letters" class = "hangman"></h1>
+  
+
+
+			<h1 class = "hangman">Number of Guesses Remaining</h1>
+
+			<h1 id = "remaining_guesses" class = "hangman"></h1>
+
+
+
+			<h1 class = "hangman">Letters Already Guessed</h1>
+
+			<h1 id = "guessed_letters" class = "hangman"></h1>
+		</div>
+		
+		
+
+		<!-- Link Javascript file -->
+		<script src="assets/javascript/game.js"></script>
+
+	</body>
+</html>
