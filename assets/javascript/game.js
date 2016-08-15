@@ -40,7 +40,7 @@ function reset(){
 
 
 	// Randomly select a new name from the list
-	name = matrixNames[Math.floor(Math.random() * matrixNames.length) + 1];
+	name = matrixNames[Math.floor(Math.random() * matrixNames.length) + 0];
 
 	// Update the display array to show "_" for the length of the name
 	for(var i = 0; i < name.length; i++){
@@ -49,13 +49,37 @@ function reset(){
 
 	// Place the html into the game
 	document.querySelector('#remaining_guesses').innerHTML = guessCount;
-	document.querySelector('#displayed_letters').innerHTML = displayLetters;
 	document.querySelector('#guessed_letters').innerHTML = wrongGuesses;
 }
 
 
+
+
+// Display String function
+function displayHang(){
+
+	displayString = "";
+
+	for(var i = 0; i < displayLetters.length; i++){
+		displayString += displayLetters[i];
+
+		if( displayLetters[i] == '_'  &&  i !== (displayLetters.length-1) ){
+			displayString += " ";
+		}		
+	}
+	displayString = displayString.replace(/,/g, "r");
+	document.querySelector('#displayed_letters').innerHTML = displayString;
+}
+
+
+
+
 // Run re-set function to initialize the game
 reset();
+
+// Display Hangman letters
+displayHang();
+
 
 // First ring for new caller
 phoneCall.play();
@@ -89,8 +113,8 @@ document.onkeyup = function(event) {
 				}
 
 				// Write the new display array to the screen
-					// !!!!!!!!!!!!    MORE CODE HERE    !!!!!!!!!!!!!
-					document.querySelector('#displayed_letters').innerHTML = displayLetters;
+				displayHang();				
+				//document.querySelector('#displayed_letters').innerHTML = displayString;
 				
 				// Update Correct Guess Array
 				correctGuesses.push(userGuess);
@@ -108,8 +132,7 @@ document.onkeyup = function(event) {
 
 
 				// Write the new Wrong Guess Array to screen
-					// !!!!!!!!!!!!    MORE CODE HERE    !!!!!!!!!!!!!
-					document.querySelector('#guessed_letters').innerHTML = wrongGuesses;
+				document.querySelector('#guessed_letters').innerHTML = wrongGuesses;
 
 				// Minus 1 guess
 				guessCount--;
@@ -123,6 +146,7 @@ document.onkeyup = function(event) {
 			// Check for loss - reset
 			if(guessCount === 0 && displayLetters.indexOf("_") !== -1){
 				reset();
+				displayHang();
 				phoneCall.play();
 			}
 			// Check for win - add score & reset
@@ -131,6 +155,7 @@ document.onkeyup = function(event) {
 				document.querySelector('#score').innerHTML = "Wins: " + score;
 
 				reset();
+				displayHang();
 				phoneCall.play();
 			}
 
