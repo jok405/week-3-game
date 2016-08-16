@@ -20,8 +20,12 @@ var correctGuesses;
 var displayLetters;
 var displayString;
 var name;
+var imagePhone = document.getElementById("image");
 
 
+
+
+// ----------------------------------------------- Functions - Start -----------------------------------------------
 
 // Game reset function
 function reset(){
@@ -55,7 +59,7 @@ function reset(){
 
 
 
-// Display String function
+// Display Hangman String function
 function displayHang(){
 
 	displayString = "";
@@ -73,6 +77,21 @@ function displayHang(){
 
 
 
+// Shake phone when calling 
+function shakePhone(){
+	
+	// set to CSS shake class
+	imagePhone.setAttribute('class', 'shake');
+
+	// wait 1.5 seconds (length of the shake animation) and then set class to something else (so it can reset to shake when called again)
+	setTimeout(function(){ imagePhone.setAttribute('class', 'none'); }, 1500);
+}
+
+// ----------------------------------------------- Functions - End -----------------------------------------------
+
+
+
+
 
 // Run re-set function to initialize the game
 reset();
@@ -83,6 +102,9 @@ displayHang();
 
 // First ring for new caller
 phoneCall.play();
+
+// Shake Phone for new caller
+shakePhone();
 
 
 // Playing the game
@@ -148,6 +170,7 @@ document.onkeyup = function(event) {
 				reset();
 				displayHang();
 				phoneCall.play();
+				shakePhone();
 			}
 			// Check for win - add score & reset
 			if (displayLetters.indexOf("_") === -1){
@@ -157,6 +180,7 @@ document.onkeyup = function(event) {
 				reset();
 				displayHang();
 				phoneCall.play();
+				shakePhone();
 			}
 
 
@@ -164,11 +188,4 @@ document.onkeyup = function(event) {
 
 	} // Letter Input Check 
 
-} // Function End
-
-
-
-
-
-		
-		
+} // Game End		
